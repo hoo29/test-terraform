@@ -1,8 +1,0 @@
-include:
-  - local: /.gitlab/ci_templates/terraform.gitlab-ci.yml
-
-variables:
-  TF_ROOT: "deployments/prod/project1"
-  TF_STATE_NAME: "project1-prod"
-  TF_CACHE_KEY: "project1-prod"
-  PROD: "true"
