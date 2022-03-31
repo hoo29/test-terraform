@@ -1,0 +1,7 @@
+include:
+  - local: /.gitlab/ci_templates/terraform.gitlab-ci.yml
+
+variables:
+  TF_ROOT: "deployments/dev/project2"
+  TF_STATE_NAME: "project2-dev"
+  TF_CACHE_KEY: "project2-dev"

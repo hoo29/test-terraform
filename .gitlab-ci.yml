@@ -1,0 +1,29 @@
+project1-dev:
+  trigger:
+    include:
+      - local: deployments/dev/project1/.gitlab-ci.yml
+  rules:
+    - changes:
+        - deployments/dev/project1/**/*
+        - modules/**/*
+      if: '$CI_PIPELINE_SOURCE == "push"'
+
+project2-dev:
+  trigger:
+    include:
+      - local: deployments/dev/project2/.gitlab-ci.yml
+  rules:
+    - changes:
+        - deployments/dev/project2/**/*
+        - modules/**/*
+      if: '$CI_PIPELINE_SOURCE == "push"'
+
+project1-prod:
+  trigger:
+    include:
+      - local: deployments/prod/project1/.gitlab-ci.yml
+  rules:
+    - changes:
+        - deployments/prod/project1/**/*
+        - modules/**/*
+      if: '$CI_PIPELINE_SOURCE == "push"'
