@@ -2,7 +2,7 @@ module "mod1" {
   source = "../../../modules/module1"
 
   suffix = "project1-dev"
-  value  = "1-1"
+  value  = "1-12"
 }
 
 module "mod2" {
