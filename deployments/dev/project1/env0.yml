@@ -6,3 +6,4 @@ deploy:
       before:
         - pwd
         - ls -la
+        - ls -la terraform.tfstate.d
