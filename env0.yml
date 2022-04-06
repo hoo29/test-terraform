@@ -7,6 +7,7 @@ deploy:
         - echo "the workspace name is $ENV0_WORKSPACE_NAME"
         - |
           WORKSPACE_STATE_PATH="terraform.tfstate.d/${ENV0_WORKSPACE_NAME}/terraform.tfstate"
+          echo "WORKSPACE_STATE_PATH $WORKSPACE_STATE_PATH"
           if [ -f "$WORKSPACE_STATE_PATH" ]; then
             echo "state file exists, nothing to do"
           else
