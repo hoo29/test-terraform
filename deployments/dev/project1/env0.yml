@@ -4,6 +4,42 @@ deploy:
   steps:
     terraformInit:
       before:
-        - pwd
-        - ls -la
         - ls -la terraform.tfstate.d
+        - set -e # not sure if this does anything...
+        - echo "the workspace name is $ENV0_WORKSPACE_NAME"
+        - |
+          if [ -d "terraform.tfstate.d" ]; then
+            echo "workspace directory present"
+          else
+            echo "terraform.tfstate.d AWOL, exiting"
+            exit 1
+          fi
+          WORKSPACE_STATE_PATH="terraform.tfstate.d/${ENV0_WORKSPACE_NAME}/terraform.tfstate"
+          if [ -f "$WORKSPACE_STATE_PATH" ]; then
+            echo "state file exists, nothing to do"
+          else
+            echo "state file not present, performing migration"
+
+            echo "checking for needed env vars"
+            if [ -z "$TF_CLOUD_API_TOKEN" ]; then
+              echo "TF_CLOUD_API_TOKEN not set, exiting"
+              exit 1
+            fi
+            if [ -z "$TF_CLOUD_WORKSPACE_ID" ]; then
+              echo "TF_CLOUD_WORKSPACE_ID not set, exiting"
+              exit 1
+            else
+              echo "TF_CLOUD_WORKSPACE_ID $TF_CLOUD_WORKSPACE_ID"
+            fi
+
+            echo "fetching latest state info"
+            STATE_DOWNLOAD_URL=$(curl --fail-with-body \
+              --header "Authorization: Bearer $TF_CLOUD_API_TOKEN" \
+              --header "Content-Type: application/vnd.api+json" \
+              https://app.terraform.io/api/v2/workspaces/${TF_CLOUD_WORKSPACE_ID}/current-state-version | jq '.data.attributes["hosted-state-download-url"]' -r)
+
+            # this call does not require auth?
+            curl --fail-with-body $STATE_DOWNLOAD_URL -o $WORKSPACE_STATE_PATH
+
+            echo "migrated"
+          fi

@@ -5,15 +5,6 @@ terraform {
       version = "~> 4.8.0"
     }
   }
-
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "huw-migration-test"
-
-    workspaces {
-      name = "test-terraform"
-    }
-  }
 }
 
 provider "aws" {
