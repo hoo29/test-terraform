@@ -4,16 +4,8 @@ deploy:
   steps:
     terraformInit:
       before:
-        - ls -la terraform.tfstate.d
-        - set -e # not sure if this does anything...
         - echo "the workspace name is $ENV0_WORKSPACE_NAME"
         - |
-          if [ -d "terraform.tfstate.d" ]; then
-            echo "workspace directory present"
-          else
-            echo "terraform.tfstate.d AWOL, exiting"
-            exit 1
-          fi
           WORKSPACE_STATE_PATH="terraform.tfstate.d/${ENV0_WORKSPACE_NAME}/terraform.tfstate"
           if [ -f "$WORKSPACE_STATE_PATH" ]; then
             echo "state file exists, nothing to do"
@@ -42,7 +34,7 @@ deploy:
 
             # this call does not require auth?
             curl -sfS $STATE_DOWNLOAD_URL -o $WORKSPACE_STATE_PATH
-            
+
             if [ $? -ne 0 ];then
               echo "curl failed, exiting"
               exit 1
