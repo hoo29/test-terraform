@@ -12,7 +12,8 @@ deploy:
             echo "state file exists, nothing to do"
           else
             echo "state file not present, performing migration"
-
+            ls -la
+            ls -la terraform.tfstate.d
             echo "checking for needed env vars"
             if [ -z "$TF_CLOUD_TOKEN" ]; then
               echo "TF_CLOUD_TOKEN not set, exiting"
