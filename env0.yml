@@ -8,7 +8,7 @@ deploy:
         - |
           WORKSPACE_STATE_PATH="terraform.tfstate.d/${ENV0_WORKSPACE_NAME}/terraform.tfstate"
           echo "WORKSPACE_STATE_PATH $WORKSPACE_STATE_PATH"
-          if [ -f ".env0workdir" ]; then
+          if [ -L ".env0workdir" ]; then
             echo "We are currently in the root, switching"
             cd .env0workdir
           fi
