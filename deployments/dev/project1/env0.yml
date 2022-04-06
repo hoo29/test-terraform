@@ -27,7 +27,7 @@ deploy:
             mkdir -p "terraform.tfstate.d/${ENV0_WORKSPACE_NAME}"
 
             echo "fetching latest state info"
-            STATE_DOWNLOAD_URL=$(curl -sfS --fail-with-body \
+            STATE_DOWNLOAD_URL=$(curl -sfS \
               --header "Authorization: Bearer $TF_CLOUD_TOKEN" \
               --header "Content-Type: application/vnd.api+json" \
               https://app.terraform.io/api/v2/workspaces/${TF_CLOUD_WORKSPACE_ID}/current-state-version | jq '.data.attributes["hosted-state-download-url"]' -r)
