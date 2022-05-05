@@ -1,0 +1,3 @@
+hostname = "ablyrealtime.scalr.io"
+organization = "env-u1aqjv6cn31b070"
+workspaces { name = "cdk" }

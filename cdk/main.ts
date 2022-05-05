@@ -25,7 +25,7 @@ new RemoteBackend(stack, {
   hostname: "ablyrealtime.scalr.io",
   organization: "env-u1aqjv6cn31b070",
   workspaces: {
-    name: "ws-u1e1n0nmq5vmdm8",
+    name: "cdk",
   },
 });
 app.synth();

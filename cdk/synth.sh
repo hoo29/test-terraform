@@ -6,10 +6,8 @@ uname -a
 
 echo "downloading node"
 curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.gz"
-ls -la
 echo "creating temp folder"
 mkdir -p /tmp/node
-ls -la /tmp/node
 echo "extracting files"
 tar -xzf "node-v$NODE_VERSION-linux-$ARCH.tar.gz" -C /tmp/node --strip-components=1 --no-same-owner
 echo "updating PATH"
@@ -23,3 +21,7 @@ echo "installing everything"
 npm i
 echo "synthesise"
 npm run synth
+
+echo "moving files to top level"
+mv cdktf.out/stacks/cdk/* .
+terraform init
