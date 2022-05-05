@@ -24,4 +24,5 @@ npm run synth
 
 echo "moving files to top level"
 mv cdktf.out/stacks/cdk/* .
+rm backend.tf
 terraform init
