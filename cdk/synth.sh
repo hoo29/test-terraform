@@ -5,13 +5,13 @@ ARCH="x64"
 uname -a
 
 echo "downloading node"
-curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz"
+curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.gz"
 ls -la
 echo "creating temp folder"
 mkdir -p /tmp/node
 ls -la /tmp/node
 echo "extracting files"
-tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /tmp/node --strip-components=1 --no-same-owner
+tar -xzf "node-v$NODE_VERSION-linux-$ARCH.tar.gz" -C /tmp/node --strip-components=1 --no-same-owner
 echo "updating PATH"
 export PATH="$PATH:/tmp/node/bin"
 echo "checking node version"
