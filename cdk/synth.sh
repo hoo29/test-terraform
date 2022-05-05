@@ -1,0 +1,22 @@
+#!/bin/bash -e
+
+NODE_VERSION="16.15.0"
+ARCH="x64"
+
+echo "downloading node"
+curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz"
+echo "creating temp folder"
+mkdir -p /tmp/node
+echo "extracting files"
+tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /tmp/node --strip-components=1 --no-same-owner
+echo "updating PATH"
+export PATH="$PATH:/tmp/node/bin"
+echo "checking node version"
+node --version
+echo "checking npm version"
+npm --version
+
+echo "installing everything"
+npm i
+echo "synthesise"
+npm run synth
