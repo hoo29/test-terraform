@@ -21,11 +21,5 @@ class MyStack extends TerraformStack {
 
 const app = new App();
 const stack = new MyStack(app, "cdk");
-new RemoteBackend(stack, {
-  hostname: "ablyrealtime.scalr.io",
-  organization: "env-u1aqjv6cn31b070",
-  workspaces: {
-    name: "cdk",
-  },
-});
+new RemoteBackend(stack, {} as any);
 app.synth();
