@@ -8,4 +8,5 @@ module "mod2" {
   source = "../module2"
 
   suffix = "i-am-in-code"
+  value  = "still-in-code"
 }
