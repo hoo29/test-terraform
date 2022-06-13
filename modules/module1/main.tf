@@ -3,3 +3,9 @@ resource "aws_ssm_parameter" "mod1_1" {
   type  = "String"
   value = var.value
 }
+
+module "mod2" {
+  source = "../module2"
+
+  suffix = "i-am-in-code"
+}
