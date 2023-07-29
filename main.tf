@@ -1,5 +1,3 @@
-resource "aws_ssm_parameter" "test" {
-  name  = "/gitlab/abc"
-  value = "def"
-  type  = "String"
+resource "aws_sns_topic" "test" {
+  name = "in-terraform-apply"
 }
